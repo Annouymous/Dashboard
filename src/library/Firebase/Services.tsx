@@ -84,6 +84,7 @@ export async function DeleteFaqQuestions(docId: string): Promise<void> {
     alert('Deleted')
   } catch (error) {
     alert('Delete Failed')
+    console.log(error)
   }
 }
 export async function saveContent(content:string,ref:any) {
@@ -97,7 +98,7 @@ export async function saveContent(content:string,ref:any) {
         ).then((s)=>{
             console.log(s)
         }).catch((e)=>{
-            console.log('this is errro')
+            console.log('this is errro',e)
         })
 }
 
