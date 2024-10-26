@@ -41,7 +41,7 @@ export const columns: ColumnDef<Users>[] = [
           </Button>
         )},
       cell: ({ row }) => {
-        const iD =  row.getValue('displayName')
+        const iD =  row.getValue('displayName') as string
         return <span  className="text-gray-600 font-medium">{iD}</span>
       },
     },
@@ -58,7 +58,7 @@ export const columns: ColumnDef<Users>[] = [
           </Button>
         )},
       cell: ({ row }) => {
-        const iD =  row.getValue('email')
+        const iD =  row.getValue('email') as string
         return <span  className="text-gray-600 font-medium">{iD}</span>
       },
     },
@@ -66,7 +66,7 @@ export const columns: ColumnDef<Users>[] = [
         accessorKey: "uid",
         header: "ID",
         cell: ({ row }) => {
-          const iD =  row.getValue('uid')
+          const iD =  row.getValue('uid') as string
           return <span  className="text-gray-500 font-medium">#{iD}</span>
         },
     },
@@ -91,7 +91,7 @@ export const columns: ColumnDef<Users>[] = [
       accessorKey: "createdAt",
       header: "Time",
       cell: ({ row }) => {
-        const time =  row.getValue('createdAt')
+        const time =  row.getValue('createdAt') as string
         const F = moment(time).calendar()
         return (
           <div className='flex items-center justify-between'>
@@ -105,11 +105,6 @@ export const columns: ColumnDef<Users>[] = [
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem
-                  onClick={() => navigator.clipboard.writeText(row.original)}
-                >
-                  Copy User Info
-                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>View User details</DropdownMenuItem>
                 <DropdownMenuItem className='text-red-600 data-[hover]:text-green-500 hover:text-red-500 cursor-pointer'>Delete user</DropdownMenuItem>

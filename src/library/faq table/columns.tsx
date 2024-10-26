@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import { MoreHorizontal, MoreVertical } from "lucide-react";
 import { ArrowUpDown } from "lucide-react";
+import { Timestamp } from "firebase/firestore";
 
 import {
   DropdownMenu,
@@ -51,15 +52,17 @@ export const columns: ColumnDef<Document>[] = [
       );
     },
     cell: ({ row }) => {
-      const iD = row.getValue("question");
-      return <span className="text-gray-600 font-medium">{iD}</span>;
+      const question = row.getValue("question")  as string ;
+      return <span className="text-gray-600 font-medium">{question}</span>;
+      
+      
     },
   },
   {
     accessorKey: "id",
     header: "ID",
     cell: ({ row }) => {
-      const iD = row.getValue("id");
+      const iD = row.getValue("id") as string;
       return <span className="text-gray-500 font-medium">#{iD}</span>;
     },
   },
@@ -77,7 +80,7 @@ export const columns: ColumnDef<Document>[] = [
       );
     },
     cell: ({ row }) => {
-      const time = row.getValue("createdAt");
+      const time = row.getValue("createdAt") as Timestamp; ;
       const pid = row.original.pid;
       let F
       if (time && typeof time.toDate === 'function') {
