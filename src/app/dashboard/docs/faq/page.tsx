@@ -21,11 +21,11 @@ import { DataTable } from "@/library/faq table/data-table";
 import { columns } from "@/library/faq table/columns";
 
 interface Document {
-  id: string;
-  question: string;
-  answer: string;
-  createdAt:string;
-  pid:string
+  id?: string;       // Optional
+  question?: string; // Optional
+  answer?: string;   // Optional
+  createdAt?: string; // Optional
+  pid: string;       // Required
 }
 
 export default function DemoPage() {
@@ -75,12 +75,13 @@ export default function DemoPage() {
  const GetDocuments = async() =>{
     setLoading(true)
     const querySnapshot = await getDocs(collection(DB, "docs","_faq","questions"))
-    const questionsList = querySnapshot.docs.map(doc => (
-      {
-        pid:doc.id,
-        ...doc.data()
-      }
-    ));
+    const questionsList: Document[] = querySnapshot.docs.map(doc => {
+      const data = doc.data() as Partial<Document>; // Use Partial<Document> for optional fields
+      return {
+        pid: doc.id,
+        ...data
+      };
+    });
     console.log(questionsList)
     setDocuments(questionsList);
     setLoading(false)

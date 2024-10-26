@@ -1,7 +1,6 @@
 "use client";
 import moment from "moment";
 import { ColumnDef } from "@tanstack/react-table";
-import { Users } from "./data";
 import Image from "next/image";
 import { MoreHorizontal, MoreVertical } from "lucide-react";
 import { ArrowUpDown } from "lucide-react";
@@ -30,11 +29,11 @@ import { Textarea } from "@headlessui/react";
 import { DeleteFaqQuestions } from "@/library/Firebase/Services";
 
 interface Document {
-  id: string;
-  question: string;
-  answer: string;
-  createdAt:string;
-  pid:string
+  id?: string;       // Optional
+  question?: string; // Optional
+  answer?: string;   // Optional
+  createdAt?: string; // Optional
+  pid: string;       // Required
 }
 
 export const columns: ColumnDef<Document>[] = [
